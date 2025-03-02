@@ -89,7 +89,7 @@
             const movieId = match[1]; // Lấy ID phim (tt13654226)
 
             // Tạo đường link mới
-            const newLink = `https://vidsrc.xyz/embed/movie/${movieId}/`;
+            const newLink = `https://vidsrc.xyz/embed/movie?imdb=${movieId}&ds_lang=vi`;
 
             // Nhúng video vào trang bằng thẻ iframe
             const outputDiv = document.getElementById('output');
