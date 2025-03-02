@@ -77,7 +77,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>IMDb Link Converter</h1>
+        <h1>IMDb Movies</h1>
         <input type="text" id="imdbLink" placeholder="Nhập đường link IMDb...">
         <button onclick="convertLink()">Xem Ngay</button>
 
@@ -113,7 +113,7 @@
                 <iframe 
                     src="${newLink}" 
                     allowfullscreen 
-                    sandbox="allow-scripts allow-same-origin">
+                    sandbox="allow-scripts allow-same-origin allow-top-navigation allow-popups">
                 </iframe>
             `;
 
