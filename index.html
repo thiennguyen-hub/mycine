@@ -51,10 +51,6 @@
             background-color: #0056b3;
         }
 
-        .output {
-            margin-top: 20px;
-        }
-
         iframe {
             margin-top: 20px;
             width: 640px;
@@ -95,18 +91,10 @@
             // Tạo đường link mới
             const newLink = `https://vidsrc.xyz/embed/movie/${movieId}/`;
 
-            // Hiển thị nút "Xem"
-            const outputDiv = document.getElementById('output');
-            outputDiv.innerHTML = `
-                <button onclick="embedVideo('${newLink}')">Xem</button>
-            `;
-        }
-
-        function embedVideo(link) {
             // Nhúng video vào trang bằng thẻ iframe
             const outputDiv = document.getElementById('output');
             outputDiv.innerHTML = `
-                <iframe src="${link}" allowfullscreen></iframe>
+                <iframe src="${newLink}" allowfullscreen></iframe>
             `;
         }
     </script>
