@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IMDb Link Converter</title>
+    <title>IMDb Movies</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -79,7 +79,7 @@
     <div class="container">
         <h1>IMDb Link Converter</h1>
         <input type="text" id="imdbLink" placeholder="Nhập đường link IMDb...">
-        <button onclick="convertLink()">Chuyển đổi</button>
+        <button onclick="convertLink()">Xem Ngay</button>
 
         <div class="output" id="output"></div>
     </div>
@@ -104,14 +104,26 @@
 
             const movieId = match[1]; // Lấy ID phim (tt13654226)
 
-            // Tạo đường link mới
+            // Tạo đường link mới với định dạng mới
             const newLink = `https://vidsrc.xyz/embed/movie?imdb=${movieId}&ds_lang=vi`;
 
-            // Nhúng video vào trang bằng thẻ iframe
+            // Nhúng video vào trang bằng thẻ iframe với sandbox
             const outputDiv = document.getElementById('output');
             outputDiv.innerHTML = `
-                <iframe src="${newLink}" allowfullscreen></iframe>
+                <iframe 
+                    src="${newLink}" 
+                    allowfullscreen 
+                    sandbox="allow-scripts allow-same-origin">
+                </iframe>
             `;
+
+            // Chặn sự kiện click từ iframe
+            const iframe = outputDiv.querySelector('iframe');
+            iframe.addEventListener('click', (event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                console.log("Click từ iframe đã bị chặn.");
+            });
         }
     </script>
 </body>
