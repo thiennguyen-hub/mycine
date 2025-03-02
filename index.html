@@ -113,17 +113,17 @@
                 <iframe 
                     src="${newLink}" 
                     allowfullscreen 
-                    >
+                    sandbox="allow-scripts allow-same-origin" >
                 </iframe>
             `;
 
             // Chặn sự kiện click từ iframe
-            const iframe = outputDiv.querySelector('iframe');
-            iframe.addEventListener('click', (event) => {
-                event.preventDefault();
-                event.stopPropagation();
-                console.log("Click từ iframe đã bị chặn.");
-            });
+           // *const iframe = outputDiv.querySelector('iframe');
+           // iframe.addEventListener('click', (event) => {
+           //     event.preventDefault();
+           //     event.stopPropagation();
+           //     console.log("Click từ iframe đã bị chặn.");
+           // });
         }
     </script>
 </body>
