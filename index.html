@@ -1,1 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMDb Link Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+        }
 
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .container {
+            text-align: center;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .output {
+            margin-top: 20px;
+        }
+
+        iframe {
+            margin-top: 20px;
+            width: 640px;
+            height: 360px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>IMDb Link Converter</h1>
+        <input type="text" id="imdbLink" placeholder="Nhập đường link IMDb...">
+        <button onclick="convertLink()">Chuyển đổi</button>
+
+        <div class="output" id="output"></div>
+    </div>
+
+    <script>
+        function convertLink() {
+            // Lấy giá trị từ ô nhập liệu
+            const imdbLink = document.getElementById('imdbLink').value;
+
+            // Kiểm tra xem đường link có chứa "www.imdb.com/title/" không
+            if (!imdbLink.includes("www.imdb.com/title/")) {
+                alert("Vui lòng nhập đường link IMDb hợp lệ!");
+                return;
+            }
+
+            // Trích xuất ID phim từ đường link
+            const match = imdbLink.match(/title\/(tt\d+)/);
+            if (!match) {
+                alert("Không thể trích xuất ID phim từ đường link!");
+                return;
+            }
+
+            const movieId = match[1]; // Lấy ID phim (tt13654226)
+
+            // Tạo đường link mới
+            const newLink = `https://vidsrc.xyz/embed/movie/${movieId}/`;
+
+            // Hiển thị nút "Xem"
+            const outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = `
+                <button onclick="embedVideo('${newLink}')">Xem</button>
+            `;
+        }
+
+        function embedVideo(link) {
+            // Nhúng video vào trang bằng thẻ iframe
+            const outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = `
+                <iframe src="${link}" allowfullscreen></iframe>
+            `;
+        }
+    </script>
+</body>
+</html>
