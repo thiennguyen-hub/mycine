@@ -112,13 +112,20 @@
             outputDiv.innerHTML = `
                 <iframe 
                     src="${newLink}" 
-                    allowfullscreen 
-                    sandbox="allow-scripts allow-same-origin">
+                    allowfullscreen>
                 </iframe>
             `;
 
-            // Chặn sự kiện click từ iframe
+            // Chặn hành vi mở pop-up từ iframe
             const iframe = outputDiv.querySelector('iframe');
+            window.addEventListener('message', (event) => {
+                if (event.source === iframe.contentWindow) {
+                    console.log("Pop-up từ iframe đã bị chặn.");
+                    event.preventDefault();
+                }
+            });
+
+            // Chặn sự kiện click từ iframe
             iframe.addEventListener('click', (event) => {
                 event.preventDefault();
                 event.stopPropagation();
