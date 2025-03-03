@@ -109,13 +109,10 @@
 
             // Nhúng video vào trang bằng thẻ iframe với sandbox
             const outputDiv = document.getElementById('output');
-            outputDiv.innerHTML = `
-                <iframe 
-                    src="${newLink}" 
-                    allowfullscreen 
-                    >
+            outputDiv.innerHTML = '
+                <iframe src="${newLink}" allowfullscreen>
                 </iframe>
-            `;
+            ';
 
             // Chặn sự kiện click từ iframe
             *const iframe = outputDiv.querySelector('iframe');
